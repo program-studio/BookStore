@@ -1,0 +1,54 @@
+﻿@model Domain.Entities.Book
+
+<div class="well">
+
+    <div class="row">
+
+        <div class="col-xs-10">
+            <h3>
+                <strong>@Model.Name</strong>
+            </h3>
+            <h4>
+                <strong>@Model.Author</strong>
+            </h4>
+        </div>
+
+        <div class="col-xs-2">
+            <h3>
+                <strong id="price" class="pull-right label label-primary">@Model.Price.ToString("# грн")</strong>
+            </h3>
+            @using (Html.BeginForm("AddToCart", "Cart"))
+            {
+                <div class="pull-right">
+                    @Html.HiddenFor(x => x.BookId)
+                    @Html.Hidden("returnUrl", Request.Url.PathAndQuery)
+                    <input type="submit" class="btn btn-warning" value="Add to Cart >>" />
+                </div>
+            }
+        </div>
+
+    </div>
+
+    <div>
+        <table>
+            <tr>
+                <td>
+                    @Html.Raw("<img style='width:150px; height:200px;' src=\""
+                                + "img/" + Model.ImgPath + "\" />")
+                </td>
+                <td>
+                    <span class="lead">@Model.Description</span>
+                </td>
+            </tr>
+        </table>
+</div>
+    
+
+    @*<span class="lead">@Model.Description</span>*@
+
+    @*<div>
+        @Html.Raw("<img style='width:80px; height:60px;' src=\""
+                                + "img/" +  Model.ImgPath + "\" />")
+    </div>*@
+
+</div>
